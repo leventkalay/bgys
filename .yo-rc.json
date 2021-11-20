@@ -42,6 +42,8 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["tr"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Varlik", "Aksiyon", "Tehdit", "Risk", "VarlikKategorisi", "TehditKategorisi", "Surec", "IsAkisi", "Personel", "Birim"],
+    "lastLiquibaseTimestamp": 1636545948000
   }
 }

@@ -48,6 +48,18 @@ public class CacheConfiguration {
             createCache(cm, com.yesevi.bgysapp.domain.User.class.getName());
             createCache(cm, com.yesevi.bgysapp.domain.Authority.class.getName());
             createCache(cm, com.yesevi.bgysapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.yesevi.bgysapp.domain.Varlik.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Varlik.class.getName() + ".risks");
+            createCache(cm, com.yesevi.bgysapp.domain.Aksiyon.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Tehdit.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Risk.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Risk.class.getName() + ".varliks");
+            createCache(cm, com.yesevi.bgysapp.domain.VarlikKategorisi.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.TehditKategorisi.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Surec.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.IsAkisi.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Personel.class.getName());
+            createCache(cm, com.yesevi.bgysapp.domain.Birim.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

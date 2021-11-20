@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Varlıklar",
+        "varlik": "Varlik",
+        "aksiyon": "Aksiyon",
+        "tehdit": "Tehdit",
+        "risk": "Risk",
+        "varlikKategorisi": "Varlik Kategorisi",
+        "tehditKategorisi": "Tehdit Kategorisi",
+        "surec": "Surec",
+        "isAkisi": "Is Akisi",
+        "personel": "Personel",
+        "birim": "Birim",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
