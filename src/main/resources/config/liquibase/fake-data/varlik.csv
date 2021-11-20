@@ -1,0 +1,11 @@
+id;adi;yeri;aciklama;gizlilik;butunluk;erisebilirlik;siniflandirma;onay_durumu;durumu;kategori_riskleri
+1;vertical withdrawal;XSS array;../fake-data/blob/hipster.txt;YUKSEK;ORTA;COK_DUSUK;TASNIF_DISI;ONAYLANDI;AKTIF;true
+2;cutting-edge;Credit Borders open-source;../fake-data/blob/hipster.txt;COK_YUKSEK;ORTA;DUSUK;HIZMETE_OZEL;ONAY_BEKLENMEDE;PASIF;false
+3;Operations maroon;Reduced;../fake-data/blob/hipster.txt;DUSUK;ORTA;YUKSEK;GIZLI;ONAYLANMADI;PASIF;true
+4;Missouri Rand Kwanza;Jewelery;../fake-data/blob/hipster.txt;COK_YUKSEK;DUSUK;ORTA;COK_GIZLI;ONAYLANDI;PASIF;false
+5;Movies;JSON bypassing mobile;../fake-data/blob/hipster.txt;DUSUK;COK_YUKSEK;YUKSEK;COK_GIZLI;ONAY_BEKLENMEDE;AKTIF;true
+6;Loan;hacking Utah;../fake-data/blob/hipster.txt;DUSUK;YUKSEK;ORTA;KISIYE_OZEL;ONAY_BEKLENMEDE;PASIF;true
+7;Berkshire;Account;../fake-data/blob/hipster.txt;COK_YUKSEK;COK_DUSUK;YUKSEK;HIZMETE_OZEL;ONAYLANMADI;AKTIF;true
+8;Guadalup,;Borders Rubber;../fake-data/blob/hipster.txt;COK_DUSUK;YUKSEK;COK_DUSUK;COK_GIZLI;ONAYLANDI;AKTIF;true
+9;Soft copying;Hat;../fake-data/blob/hipster.txt;COK_DUSUK;COK_YUKSEK;ORTA;KISIYE_OZEL;ONAY_BEKLENMEDE;AKTIF;true
+10;Borders optical;Fantastic Wooden Minnesota;../fake-data/blob/hipster.txt;ORTA;ORTA;ORTA;COK_GIZLI;ONAY_BEKLENMEDE;AKTIF;true

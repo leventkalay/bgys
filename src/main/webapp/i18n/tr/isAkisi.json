@@ -1,0 +1,27 @@
+{
+  "bgysApp": {
+    "isAkisi": {
+      "home": {
+        "title": "Is Akışları",
+        "refreshListLabel": "Listeyi Yenile",
+        "createLabel": " Iş Akışı Ekle",
+        "createOrEditLabel": "İş Akışı Ekleme / Güncelleme",
+        "notFound": "No Is Akisis found"
+      },
+      "created": "A new Is Akisi is created with identifier {{ param }}",
+      "updated": "A Is Akisi is updated with identifier {{ param }}",
+      "deleted": "A Is Akisi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Is Akisi {{ id }}?"
+      },
+      "detail": {
+        "title": "Is Akisi"
+      },
+      "id": "Id",
+      "konu": "Konu",
+      "aciklama": "Açıklama",
+      "sonTarih": "Son Tarih",
+      "personel": "Personel"
+    }
+  }
+}

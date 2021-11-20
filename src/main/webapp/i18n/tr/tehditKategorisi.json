@@ -1,0 +1,25 @@
+{
+  "bgysApp": {
+    "tehditKategorisi": {
+      "home": {
+        "title": "Tehdit Kategorisis",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Tehdit Kategorisi Ekle",
+        "createOrEditLabel": "Create or edit a Tehdit Kategorisi",
+        "notFound": "No Tehdit Kategorisis found"
+      },
+      "created": "A new Tehdit Kategorisi is created with identifier {{ param }}",
+      "updated": "A Tehdit Kategorisi is updated with identifier {{ param }}",
+      "deleted": "A Tehdit Kategorisi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tehdit Kategorisi {{ id }}?"
+      },
+      "detail": {
+        "title": "Tehdit Kategorisi"
+      },
+      "id": "Id",
+      "adi": "Adi",
+      "aciklama": "Aciklama"
+    }
+  }
+}

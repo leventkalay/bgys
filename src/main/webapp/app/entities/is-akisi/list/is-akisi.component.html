@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="IsAkisiHeading">
+    <span jhiTranslate="bgysApp.isAkisi.home.title">Is Akisis</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="bgysApp.isAkisi.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-is-akisi"
+        [routerLink]="['/is-akisi/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="bgysApp.isAkisi.home.createLabel"> Create a new Is Akisi </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="isAkisis?.length === 0">
+    <span jhiTranslate="bgysApp.isAkisi.home.notFound">No isAkisis found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="isAkisis && isAkisis.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="bgysApp.isAkisi.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="konu"><span jhiTranslate="bgysApp.isAkisi.konu">Konu</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="aciklama">
+            <span jhiTranslate="bgysApp.isAkisi.aciklama">Aciklama</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sonTarih">
+            <span jhiTranslate="bgysApp.isAkisi.sonTarih">Son Tarih</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="personel.adi">
+            <span jhiTranslate="bgysApp.isAkisi.personel">Personel</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let isAkisi of isAkisis; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/is-akisi', isAkisi.id, 'view']">{{ isAkisi.id }}</a>
+          </td>
+          <td>{{ isAkisi.konu }}</td>
+          <td>{{ isAkisi.aciklama }}</td>
+          <td>{{ isAkisi.sonTarih | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="isAkisi.personel">
+              <a [routerLink]="['/personel', isAkisi.personel?.id, 'view']">{{ isAkisi.personel?.adi }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/is-akisi', isAkisi.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/is-akisi', isAkisi.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(isAkisi)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="isAkisis && isAkisis.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

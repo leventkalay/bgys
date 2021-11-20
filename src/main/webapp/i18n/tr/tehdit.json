@@ -1,0 +1,27 @@
+{
+  "bgysApp": {
+    "tehdit": {
+      "home": {
+        "title": "Tehditler",
+        "refreshListLabel": "Listeyi Yenile",
+        "createLabel": "Create a new Tehdit",
+        "createOrEditLabel": "Create or edit a Tehdit",
+        "notFound": "No Tehdits found"
+      },
+      "created": "A new Tehdit is created with identifier {{ param }}",
+      "updated": "A Tehdit is updated with identifier {{ param }}",
+      "deleted": "A Tehdit is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tehdit {{ id }}?"
+      },
+      "detail": {
+        "title": "Tehdit"
+      },
+      "id": "ID",
+      "adi": "Adi",
+      "aciklama": "Aciklama",
+      "onayDurumu": "Onay Durumu",
+      "kategori": "Kategori"
+    }
+  }
+}

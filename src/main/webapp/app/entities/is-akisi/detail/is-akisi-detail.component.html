@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="isAkisi">
+      <h2 data-cy="isAkisiDetailsHeading"><span jhiTranslate="bgysApp.isAkisi.detail.title">Is Akisi</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="bgysApp.isAkisi.id">Id</span></dt>
+        <dd>
+          <span>{{ isAkisi.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.isAkisi.konu">Konu</span></dt>
+        <dd>
+          <span>{{ isAkisi.konu }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.isAkisi.aciklama">Aciklama</span></dt>
+        <dd>
+          <span>{{ isAkisi.aciklama }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.isAkisi.sonTarih">Son Tarih</span></dt>
+        <dd>
+          <span>{{ isAkisi.sonTarih | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.isAkisi.personel">Personel</span></dt>
+        <dd>
+          <div *ngIf="isAkisi.personel">
+            <a [routerLink]="['/personel', isAkisi.personel?.id, 'view']">{{ isAkisi.personel?.adi }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/is-akisi', isAkisi.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "bgysApp": {
+    "surec": {
+      "home": {
+        "title": "Surecler",
+        "refreshListLabel": "Listeyi Yenile",
+        "createLabel": "Create a new Surec",
+        "createOrEditLabel": "Create or edit a Surec",
+        "notFound": "No Surecs found"
+      },
+      "created": "A new Surec is created with identifier {{ param }}",
+      "updated": "A Surec is updated with identifier {{ param }}",
+      "deleted": "A Surec is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Surec {{ id }}?"
+      },
+      "detail": {
+        "title": "Surec"
+      },
+      "id": "Id",
+      "adi": "Adi",
+      "aciklama": "Aciklama"
+    }
+  }
+}

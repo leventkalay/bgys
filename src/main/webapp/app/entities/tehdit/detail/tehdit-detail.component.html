@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tehdit">
+      <h2 data-cy="tehditDetailsHeading"><span jhiTranslate="bgysApp.tehdit.detail.title">Tehdit</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ tehdit.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.tehdit.adi">Adi</span></dt>
+        <dd>
+          <span>{{ tehdit.adi }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.tehdit.aciklama">Aciklama</span></dt>
+        <dd>
+          <span>{{ tehdit.aciklama }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.tehdit.onayDurumu">Onay Durumu</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Onay.' + tehdit.onayDurumu }}">{{ tehdit.onayDurumu }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.tehdit.kategori">Kategori</span></dt>
+        <dd>
+          <div *ngIf="tehdit.kategori">
+            <a [routerLink]="['/tehdit-kategorisi', tehdit.kategori?.id, 'view']">{{ tehdit.kategori?.adi }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/tehdit', tehdit.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

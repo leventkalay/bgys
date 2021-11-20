@@ -1,0 +1,12 @@
+{
+  "bgysApp": {
+    "Seviye": {
+      "null": "",
+      "COK_DUSUK": "COK_DUSUK",
+      "DUSUK": "DUSUK",
+      "ORTA": "ORTA",
+      "YUKSEK": "YUKSEK",
+      "COK_YUKSEK": "COK_YUKSEK"
+    }
+  }
+}

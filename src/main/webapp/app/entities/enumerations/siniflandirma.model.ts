@@ -1,0 +1,11 @@
+export enum Siniflandirma {
+  COK_GIZLI = 'COK_GIZLI',
+
+  GIZLI = 'GIZLI',
+
+  HIZMETE_OZEL = 'HIZMETE_OZEL',
+
+  TASNIF_DISI = 'TASNIF_DISI',
+
+  KISIYE_OZEL = 'KISIYE_OZEL',
+}

@@ -1,0 +1,26 @@
+{
+  "bgysApp": {
+    "aksiyon": {
+      "home": {
+        "title": "Aksiyonlar",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Aksiyon Ekle",
+        "createOrEditLabel": "Create or edit a Aksiyon",
+        "notFound": "No Aksiyons found"
+      },
+      "created": "A new Aksiyon is created with identifier {{ param }}",
+      "updated": "A Aksiyon is updated with identifier {{ param }}",
+      "deleted": "A Aksiyon is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Aksiyon {{ id }}?"
+      },
+      "detail": {
+        "title": "Aksiyon"
+      },
+      "id": "ID",
+      "adi": "Adi",
+      "aciklama": "Aciklama",
+      "onayDurumu": "Onay Durumu"
+    }
+  }
+}

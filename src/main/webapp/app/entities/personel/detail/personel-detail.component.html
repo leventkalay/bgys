@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="personel">
+      <h2 data-cy="personelDetailsHeading"><span jhiTranslate="bgysApp.personel.detail.title">Personel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="bgysApp.personel.id">Id</span></dt>
+        <dd>
+          <span>{{ personel.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.personel.adi">Adi</span></dt>
+        <dd>
+          <span>{{ personel.adi }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.personel.soyadi">Soyadi</span></dt>
+        <dd>
+          <span>{{ personel.soyadi }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.personel.internalUser">Internal User</span></dt>
+        <dd>
+          <span>{{ personel.internalUser?.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.personel.birim">Birim</span></dt>
+        <dd>
+          <div *ngIf="personel.birim">
+            <a [routerLink]="['/birim', personel.birim?.id, 'view']">{{ personel.birim?.adi }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/personel', personel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

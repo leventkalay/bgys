@@ -1,0 +1,40 @@
+{
+  "name": "IsAkisi",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "konu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aciklama",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sonTarih",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personel",
+      "otherEntityRelationshipName": "isAkisi",
+      "relationshipName": "personel",
+      "otherEntityField": "adi"
+    }
+  ],
+  "entityTableName": "is_akisi",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211110120546"
+}

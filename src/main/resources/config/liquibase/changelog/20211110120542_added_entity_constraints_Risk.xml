@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity Risk.
+    -->
+    <changeSet id="20211110120542-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="risk_id"
+                                 baseTableName="rel_risk__varlik"
+                                 constraintName="fk_rel_risk__varlik__risk_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="risk"/>
+
+        <addForeignKeyConstraint baseColumnNames="varlik_id"
+                                 baseTableName="rel_risk__varlik"
+                                 constraintName="fk_rel_risk__varlik__varlik_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="varlik"/>
+    </changeSet>
+</databaseChangeLog>

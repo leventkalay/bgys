@@ -1,0 +1,105 @@
+entity Varlik {
+    id Long, 
+    adi String required,
+    yeri String,
+    aciklama TextBlob,
+    gizlilik Seviye required,
+    butunluk Seviye required,
+    erisebilirlik Seviye required,
+    siniflandirma Siniflandirma,
+    onayDurumu Onay,
+    durumu Durumu,
+    kategoriRiskleri Boolean
+}
+entity Aksiyon{
+adi String required,
+aciklama String,
+onayDurumu Onay
+}
+
+entity Tehdit {
+	adi String required,
+    aciklama String,
+    onayDurumu Onay,
+}
+entity Risk {
+	adi String required,
+    aciklama String,
+    onayDurumu Onay,
+}
+
+enum Seviye {
+	COK_DUSUK,
+	DUSUK,
+    ORTA,
+    YUKSEK,
+    COK_YUKSEK
+}
+enum Siniflandirma {
+	COK_GIZLI,
+	GIZLI,
+    HIZMETE_OZEL,
+    TASNIF_DISI,
+    KISIYE_OZEL
+}
+enum Durumu {
+	AKTIF,
+	PASIF
+}
+enum Onay {
+	ONAYLANMADI,
+	ONAY_BEKLENMEDE,
+    ONAYLANDI
+}
+entity VarlikKategorisi {
+id Long, 
+adi String,
+aciklama String
+}
+entity TehditKategorisi{
+id Long, 
+adi String,
+aciklama String
+}
+entity Surec {
+id Long, 
+adi String,
+aciklama String
+}
+entity IsAkisi {
+id Long, 
+konu String,
+aciklama String,
+sonTarih LocalDate
+}
+entity Personel {
+id Long,
+adi String required,
+soyadi String required
+}
+entity Birim {
+id Long,
+adi String required,
+soyadi String required
+}
+ relationship ManyToOne {
+    Varlik{kategori(adi)} to VarlikKategorisi,
+    Varlik{surec(adi)} to Surec,
+    Tehdit{kategori(adi)} to TehditKategorisi,
+    Varlik{ilkSahibi(adi)} to Personel,
+    Varlik{ikinciSahibi(adi)} to Personel,
+    IsAkisi{personel(adi)} to Personel,
+    Personel{birim(adi)} to Birim
+    Birim {ustBirim(adi)} to Birim
+
+}
+ relationship ManyToMany {
+     Risk{varlik(adi)} to Varlik {risk(adi)} ,
+ }
+ relationship OneToOne {
+  Personel{internalUser} to User
+ }
+
+service all with serviceImpl
+paginate all with pagination
+  

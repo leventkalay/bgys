@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-birim-heading" data-cy="BirimCreateUpdateHeading" jhiTranslate="bgysApp.birim.home.createOrEditLabel">
+        Create or edit a Birim
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="bgysApp.birim.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.birim.adi" for="field_adi">Adi</label>
+          <input type="text" class="form-control" name="adi" id="field_adi" data-cy="adi" formControlName="adi" />
+          <div *ngIf="editForm.get('adi')!.invalid && (editForm.get('adi')!.dirty || editForm.get('adi')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('adi')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.birim.soyadi" for="field_soyadi">Soyadi</label>
+          <input type="text" class="form-control" name="soyadi" id="field_soyadi" data-cy="soyadi" formControlName="soyadi" />
+          <div *ngIf="editForm.get('soyadi')!.invalid && (editForm.get('soyadi')!.dirty || editForm.get('soyadi')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('soyadi')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.birim.ustBirim" for="field_ustBirim">Ust Birim</label>
+          <select class="form-control" id="field_ustBirim" data-cy="ustBirim" name="ustBirim" formControlName="ustBirim">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="birimOption.id === editForm.get('ustBirim')!.value?.id ? editForm.get('ustBirim')!.value : birimOption"
+              *ngFor="let birimOption of birimsSharedCollection; trackBy: trackBirimById"
+            >
+              {{ birimOption.adi }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

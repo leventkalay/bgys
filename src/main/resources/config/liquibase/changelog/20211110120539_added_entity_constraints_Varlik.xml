@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity Varlik.
+    -->
+    <changeSet id="20211110120539-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="kategori_id"
+                                 baseTableName="varlik"
+                                 constraintName="fk_varlik__kategori_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="varlik_kategorisi"/>
+
+        <addForeignKeyConstraint baseColumnNames="surec_id"
+                                 baseTableName="varlik"
+                                 constraintName="fk_varlik__surec_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="surec"/>
+
+        <addForeignKeyConstraint baseColumnNames="ilk_sahibi_id"
+                                 baseTableName="varlik"
+                                 constraintName="fk_varlik__ilk_sahibi_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personel"/>
+
+        <addForeignKeyConstraint baseColumnNames="ikinci_sahibi_id"
+                                 baseTableName="varlik"
+                                 constraintName="fk_varlik__ikinci_sahibi_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personel"/>
+    </changeSet>
+</databaseChangeLog>

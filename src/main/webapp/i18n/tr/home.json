@@ -5,7 +5,7 @@
     "logged": {
       "message": "\"{{username}}\" olarak giriş yaptınız."
     },
-    "question": "JHipster hakkında sorularınız için:",
+    "question": " İletişim için:",
     "link": {
       "homepage": " Yesevi ana sayfa",
       "stackoverflow": "Stack Overflow'da JHipster",
@@ -13,7 +13,7 @@
       "chat": "JHipster genel sohbet odası",
       "follow": "Twitter'da @jhipster adresinden ulaşabilirsiniz"
     },
-    "like": "JHipster'ı beğendiysenizi yıldız vermeyi unutmayın",
+    "like": "Uygulamayı beğendiysenizi yıldız vermeyi unutmayın",
     "github": "GitHub"
   }
 }

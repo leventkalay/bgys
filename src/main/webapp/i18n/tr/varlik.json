@@ -1,0 +1,38 @@
+{
+  "bgysApp": {
+    "varlik": {
+      "home": {
+        "title": "BGYS Varlıkları",
+        "refreshListLabel": "Listeyi Yenile",
+        "createLabel": "Yeni Bir Varlık Ekle",
+        "createOrEditLabel": "Create or edit a Varlik",
+        "notFound": "No Varliks found"
+      },
+      "created": "A new Varlik is created with identifier {{ param }}",
+      "updated": "A Varlik is updated with identifier {{ param }}",
+      "deleted": "A Varlik is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Varlik {{ id }}?"
+      },
+      "detail": {
+        "title": "Varlik"
+      },
+      "id": "Id",
+      "adi": "Adi",
+      "yeri": "Yeri",
+      "aciklama": "Aciklama",
+      "gizlilik": "Gizlilik",
+      "butunluk": "Butunluk",
+      "erisebilirlik": "Erisebilirlik",
+      "siniflandirma": "Siniflandirma",
+      "onayDurumu": "Onay Durumu",
+      "durumu": "Durumu",
+      "kategoriRiskleri": "Kategori Riskleri",
+      "kategori": "Kategori",
+      "surec": "Surec",
+      "ilkSahibi": "Ilk Sahibi",
+      "ikinciSahibi": "Ikinci Sahibi",
+      "risk": "Risk"
+    }
+  }
+}

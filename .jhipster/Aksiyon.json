@@ -1,0 +1,30 @@
+{
+  "name": "Aksiyon",
+  "fields": [
+    {
+      "fieldName": "adi",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "aciklama",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "onayDurumu",
+      "fieldType": "Onay",
+      "fieldValues": "ONAYLANMADI,ONAY_BEKLENMEDE,ONAYLANDI"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "aksiyon",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211110120540"
+}

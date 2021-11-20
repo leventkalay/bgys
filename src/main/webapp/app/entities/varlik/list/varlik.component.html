@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="VarlikHeading">
+    <span jhiTranslate="bgysApp.varlik.home.title">Varliks</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="bgysApp.varlik.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-varlik"
+        [routerLink]="['/varlik/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="bgysApp.varlik.home.createLabel"> Create a new Varlik </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="varliks?.length === 0">
+    <span jhiTranslate="bgysApp.varlik.home.notFound">No varliks found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="varliks && varliks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="bgysApp.varlik.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adi"><span jhiTranslate="bgysApp.varlik.adi">Adi</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="yeri"><span jhiTranslate="bgysApp.varlik.yeri">Yeri</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="aciklama">
+            <span jhiTranslate="bgysApp.varlik.aciklama">Aciklama</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gizlilik">
+            <span jhiTranslate="bgysApp.varlik.gizlilik">Gizlilik</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="butunluk">
+            <span jhiTranslate="bgysApp.varlik.butunluk">Butunluk</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="erisebilirlik">
+            <span jhiTranslate="bgysApp.varlik.erisebilirlik">Erisebilirlik</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="siniflandirma">
+            <span jhiTranslate="bgysApp.varlik.siniflandirma">Siniflandirma</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="onayDurumu">
+            <span jhiTranslate="bgysApp.varlik.onayDurumu">Onay Durumu</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="durumu"><span jhiTranslate="bgysApp.varlik.durumu">Durumu</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="kategoriRiskleri">
+            <span jhiTranslate="bgysApp.varlik.kategoriRiskleri">Kategori Riskleri</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="kategori.adi">
+            <span jhiTranslate="bgysApp.varlik.kategori">Kategori</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="surec.adi"><span jhiTranslate="bgysApp.varlik.surec">Surec</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="ilkSahibi.adi">
+            <span jhiTranslate="bgysApp.varlik.ilkSahibi">Ilk Sahibi</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ikinciSahibi.adi">
+            <span jhiTranslate="bgysApp.varlik.ikinciSahibi">Ikinci Sahibi</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let varlik of varliks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/varlik', varlik.id, 'view']">{{ varlik.id }}</a>
+          </td>
+          <td>{{ varlik.adi }}</td>
+          <td>{{ varlik.yeri }}</td>
+          <td>{{ varlik.aciklama }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.gizlilik }}">{{ varlik.gizlilik }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.butunluk }}">{{ varlik.butunluk }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.erisebilirlik }}">{{ varlik.erisebilirlik }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Siniflandirma.' + varlik.siniflandirma }}">{{ varlik.siniflandirma }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Onay.' + varlik.onayDurumu }}">{{ varlik.onayDurumu }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Durumu.' + varlik.durumu }}">{{ varlik.durumu }}</td>
+          <td>{{ varlik.kategoriRiskleri }}</td>
+          <td>
+            <div *ngIf="varlik.kategori">
+              <a [routerLink]="['/varlik-kategorisi', varlik.kategori?.id, 'view']">{{ varlik.kategori?.adi }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="varlik.surec">
+              <a [routerLink]="['/surec', varlik.surec?.id, 'view']">{{ varlik.surec?.adi }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="varlik.ilkSahibi">
+              <a [routerLink]="['/personel', varlik.ilkSahibi?.id, 'view']">{{ varlik.ilkSahibi?.adi }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="varlik.ikinciSahibi">
+              <a [routerLink]="['/personel', varlik.ikinciSahibi?.id, 'view']">{{ varlik.ikinciSahibi?.adi }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/varlik', varlik.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/varlik', varlik.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(varlik)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="varliks && varliks.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

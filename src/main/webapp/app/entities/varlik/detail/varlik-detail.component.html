@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="varlik">
+      <h2 data-cy="varlikDetailsHeading"><span jhiTranslate="bgysApp.varlik.detail.title">Varlik</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="bgysApp.varlik.id">Id</span></dt>
+        <dd>
+          <span>{{ varlik.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.adi">Adi</span></dt>
+        <dd>
+          <span>{{ varlik.adi }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.yeri">Yeri</span></dt>
+        <dd>
+          <span>{{ varlik.yeri }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.aciklama">Aciklama</span></dt>
+        <dd>
+          <span>{{ varlik.aciklama }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.gizlilik">Gizlilik</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.gizlilik }}">{{ varlik.gizlilik }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.butunluk">Butunluk</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.butunluk }}">{{ varlik.butunluk }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.erisebilirlik">Erisebilirlik</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Seviye.' + varlik.erisebilirlik }}">{{ varlik.erisebilirlik }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.siniflandirma">Siniflandirma</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Siniflandirma.' + varlik.siniflandirma }}">{{ varlik.siniflandirma }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.onayDurumu">Onay Durumu</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Onay.' + varlik.onayDurumu }}">{{ varlik.onayDurumu }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.durumu">Durumu</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bgysApp.Durumu.' + varlik.durumu }}">{{ varlik.durumu }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.kategoriRiskleri">Kategori Riskleri</span></dt>
+        <dd>
+          <span>{{ varlik.kategoriRiskleri }}</span>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.kategori">Kategori</span></dt>
+        <dd>
+          <div *ngIf="varlik.kategori">
+            <a [routerLink]="['/varlik-kategorisi', varlik.kategori?.id, 'view']">{{ varlik.kategori?.adi }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.surec">Surec</span></dt>
+        <dd>
+          <div *ngIf="varlik.surec">
+            <a [routerLink]="['/surec', varlik.surec?.id, 'view']">{{ varlik.surec?.adi }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.ilkSahibi">Ilk Sahibi</span></dt>
+        <dd>
+          <div *ngIf="varlik.ilkSahibi">
+            <a [routerLink]="['/personel', varlik.ilkSahibi?.id, 'view']">{{ varlik.ilkSahibi?.adi }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bgysApp.varlik.ikinciSahibi">Ikinci Sahibi</span></dt>
+        <dd>
+          <div *ngIf="varlik.ikinciSahibi">
+            <a [routerLink]="['/personel', varlik.ikinciSahibi?.id, 'view']">{{ varlik.ikinciSahibi?.adi }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/varlik', varlik.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+{
+  "name": "Varlik",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "adi",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "yeri",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aciklama",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "gizlilik",
+      "fieldType": "Seviye",
+      "fieldValues": "COK_DUSUK,DUSUK,ORTA,YUKSEK,COK_YUKSEK",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "butunluk",
+      "fieldType": "Seviye",
+      "fieldValues": "COK_DUSUK,DUSUK,ORTA,YUKSEK,COK_YUKSEK",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "erisebilirlik",
+      "fieldType": "Seviye",
+      "fieldValues": "COK_DUSUK,DUSUK,ORTA,YUKSEK,COK_YUKSEK",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "siniflandirma",
+      "fieldType": "Siniflandirma",
+      "fieldValues": "COK_GIZLI,GIZLI,HIZMETE_OZEL,TASNIF_DISI,KISIYE_OZEL"
+    },
+    {
+      "fieldName": "onayDurumu",
+      "fieldType": "Onay",
+      "fieldValues": "ONAYLANMADI,ONAY_BEKLENMEDE,ONAYLANDI"
+    },
+    {
+      "fieldName": "durumu",
+      "fieldType": "Durumu",
+      "fieldValues": "AKTIF,PASIF"
+    },
+    {
+      "fieldName": "kategoriRiskleri",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "varlikKategorisi",
+      "otherEntityRelationshipName": "varlik",
+      "relationshipName": "kategori",
+      "otherEntityField": "adi"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "surec",
+      "otherEntityRelationshipName": "varlik",
+      "relationshipName": "surec",
+      "otherEntityField": "adi"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personel",
+      "otherEntityRelationshipName": "varlik",
+      "relationshipName": "ilkSahibi",
+      "otherEntityField": "adi"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personel",
+      "otherEntityRelationshipName": "varlik",
+      "relationshipName": "ikinciSahibi",
+      "otherEntityField": "adi"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "risk",
+      "otherEntityRelationshipName": "varlik",
+      "relationshipName": "risk",
+      "otherEntityField": "adi",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "varlik",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211110120539"
+}

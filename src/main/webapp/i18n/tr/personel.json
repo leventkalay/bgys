@@ -1,0 +1,27 @@
+{
+  "bgysApp": {
+    "personel": {
+      "home": {
+        "title": "Personeller",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Personel",
+        "createOrEditLabel": "Create or edit a Personel",
+        "notFound": "No Personels found"
+      },
+      "created": "A new Personel is created with identifier {{ param }}",
+      "updated": "A Personel is updated with identifier {{ param }}",
+      "deleted": "A Personel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Personel {{ id }}?"
+      },
+      "detail": {
+        "title": "Personel"
+      },
+      "id": "Id",
+      "adi": "Adi",
+      "soyadi": "Soyadi",
+      "internalUser": "Internal User",
+      "birim": "Birim"
+    }
+  }
+}

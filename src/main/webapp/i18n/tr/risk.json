@@ -1,0 +1,27 @@
+{
+  "bgysApp": {
+    "risk": {
+      "home": {
+        "title": "Riskler",
+        "refreshListLabel": "Listeyi Yenile",
+        "createLabel": "Create a new Risk",
+        "createOrEditLabel": "Create or edit a Risk",
+        "notFound": "No Risks found"
+      },
+      "created": "A new Risk is created with identifier {{ param }}",
+      "updated": "A Risk is updated with identifier {{ param }}",
+      "deleted": "A Risk is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Risk {{ id }}?"
+      },
+      "detail": {
+        "title": "Risk"
+      },
+      "id": "ID",
+      "adi": "Adi",
+      "aciklama": "Aciklama",
+      "onayDurumu": "Onay Durumu",
+      "varlik": "Varlik"
+    }
+  }
+}

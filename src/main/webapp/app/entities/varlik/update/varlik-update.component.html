@@ -1,0 +1,217 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-varlik-heading" data-cy="VarlikCreateUpdateHeading" jhiTranslate="bgysApp.varlik.home.createOrEditLabel">
+        Create or edit a Varlik
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.adi" for="field_adi">Adi</label>
+          <input type="text" class="form-control" name="adi" id="field_adi" data-cy="adi" formControlName="adi" />
+          <div *ngIf="editForm.get('adi')!.invalid && (editForm.get('adi')!.dirty || editForm.get('adi')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('adi')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.yeri" for="field_yeri">Yeri</label>
+          <input type="text" class="form-control" name="yeri" id="field_yeri" data-cy="yeri" formControlName="yeri" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.aciklama" for="field_aciklama">Aciklama</label>
+          <textarea class="form-control" name="aciklama" id="field_aciklama" data-cy="aciklama" formControlName="aciklama"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.gizlilik" for="field_gizlilik">Gizlilik</label>
+          <select class="form-control" name="gizlilik" formControlName="gizlilik" id="field_gizlilik" data-cy="gizlilik">
+            <option [ngValue]="null">{{ 'bgysApp.Seviye.null' | translate }}</option>
+            <option *ngFor="let seviye of seviyeValues" [value]="seviye">{{ 'bgysApp.Seviye.' + seviye | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('gizlilik')!.invalid && (editForm.get('gizlilik')!.dirty || editForm.get('gizlilik')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('gizlilik')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.butunluk" for="field_butunluk">Butunluk</label>
+          <select class="form-control" name="butunluk" formControlName="butunluk" id="field_butunluk" data-cy="butunluk">
+            <option [ngValue]="null">{{ 'bgysApp.Seviye.null' | translate }}</option>
+            <option *ngFor="let seviye of seviyeValues" [value]="seviye">{{ 'bgysApp.Seviye.' + seviye | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('butunluk')!.invalid && (editForm.get('butunluk')!.dirty || editForm.get('butunluk')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('butunluk')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.erisebilirlik" for="field_erisebilirlik">Erisebilirlik</label>
+          <select
+            class="form-control"
+            name="erisebilirlik"
+            formControlName="erisebilirlik"
+            id="field_erisebilirlik"
+            data-cy="erisebilirlik"
+          >
+            <option [ngValue]="null">{{ 'bgysApp.Seviye.null' | translate }}</option>
+            <option *ngFor="let seviye of seviyeValues" [value]="seviye">{{ 'bgysApp.Seviye.' + seviye | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('erisebilirlik')!.invalid && (editForm.get('erisebilirlik')!.dirty || editForm.get('erisebilirlik')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('erisebilirlik')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.siniflandirma" for="field_siniflandirma">Siniflandirma</label>
+          <select
+            class="form-control"
+            name="siniflandirma"
+            formControlName="siniflandirma"
+            id="field_siniflandirma"
+            data-cy="siniflandirma"
+          >
+            <option [ngValue]="null">{{ 'bgysApp.Siniflandirma.null' | translate }}</option>
+            <option *ngFor="let siniflandirma of siniflandirmaValues" [value]="siniflandirma">
+              {{ 'bgysApp.Siniflandirma.' + siniflandirma | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.onayDurumu" for="field_onayDurumu">Onay Durumu</label>
+          <select class="form-control" name="onayDurumu" formControlName="onayDurumu" id="field_onayDurumu" data-cy="onayDurumu">
+            <option [ngValue]="null">{{ 'bgysApp.Onay.null' | translate }}</option>
+            <option *ngFor="let onay of onayValues" [value]="onay">{{ 'bgysApp.Onay.' + onay | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.durumu" for="field_durumu">Durumu</label>
+          <select class="form-control" name="durumu" formControlName="durumu" id="field_durumu" data-cy="durumu">
+            <option [ngValue]="null">{{ 'bgysApp.Durumu.null' | translate }}</option>
+            <option *ngFor="let durumu of durumuValues" [value]="durumu">{{ 'bgysApp.Durumu.' + durumu | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.kategoriRiskleri" for="field_kategoriRiskleri"
+            >Kategori Riskleri</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="kategoriRiskleri"
+            id="field_kategoriRiskleri"
+            data-cy="kategoriRiskleri"
+            formControlName="kategoriRiskleri"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.kategori" for="field_kategori">Kategori</label>
+          <select class="form-control" id="field_kategori" data-cy="kategori" name="kategori" formControlName="kategori">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                varlikKategorisiOption.id === editForm.get('kategori')!.value?.id ? editForm.get('kategori')!.value : varlikKategorisiOption
+              "
+              *ngFor="let varlikKategorisiOption of varlikKategorisisSharedCollection; trackBy: trackVarlikKategorisiById"
+            >
+              {{ varlikKategorisiOption.adi }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.surec" for="field_surec">Surec</label>
+          <select class="form-control" id="field_surec" data-cy="surec" name="surec" formControlName="surec">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="surecOption.id === editForm.get('surec')!.value?.id ? editForm.get('surec')!.value : surecOption"
+              *ngFor="let surecOption of surecsSharedCollection; trackBy: trackSurecById"
+            >
+              {{ surecOption.adi }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.ilkSahibi" for="field_ilkSahibi">Ilk Sahibi</label>
+          <select class="form-control" id="field_ilkSahibi" data-cy="ilkSahibi" name="ilkSahibi" formControlName="ilkSahibi">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="personelOption.id === editForm.get('ilkSahibi')!.value?.id ? editForm.get('ilkSahibi')!.value : personelOption"
+              *ngFor="let personelOption of personelsSharedCollection; trackBy: trackPersonelById"
+            >
+              {{ personelOption.adi }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bgysApp.varlik.ikinciSahibi" for="field_ikinciSahibi">Ikinci Sahibi</label>
+          <select class="form-control" id="field_ikinciSahibi" data-cy="ikinciSahibi" name="ikinciSahibi" formControlName="ikinciSahibi">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                personelOption.id === editForm.get('ikinciSahibi')!.value?.id ? editForm.get('ikinciSahibi')!.value : personelOption
+              "
+              *ngFor="let personelOption of personelsSharedCollection; trackBy: trackPersonelById"
+            >
+              {{ personelOption.adi }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

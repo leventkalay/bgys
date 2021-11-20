@@ -1,0 +1,26 @@
+{
+  "bgysApp": {
+    "birim": {
+      "home": {
+        "title": "Birimler",
+        "refreshListLabel": "Refresh list",
+        "createLabel": " Birim Ekle",
+        "createOrEditLabel": "Create or edit a Birim",
+        "notFound": "No Birims found"
+      },
+      "created": "A new Birim is created with identifier {{ param }}",
+      "updated": "A Birim is updated with identifier {{ param }}",
+      "deleted": "A Birim is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Birim {{ id }}?"
+      },
+      "detail": {
+        "title": "Birim"
+      },
+      "id": "Id",
+      "adi": "Adi",
+      "soyadi": "Soyadi",
+      "ustBirim": "Ust Birim"
+    }
+  }
+}
