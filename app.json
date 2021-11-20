@@ -1,5 +1,5 @@
 {
-  "name": "bgys",
+  "name": "bgys-app",
   "buildpacks": [
     {
       "url": "heroku/java"
