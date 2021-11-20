@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/bgysapp
-    username: levent
-    password: 111222
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
     hikari:
       poolName: Hikari
       auto-commit: false
