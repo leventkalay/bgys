@@ -44,6 +44,9 @@
     "languages": ["tr"],
     "enableGradleEnterprise": false,
     "entities": ["Varlik", "Aksiyon", "Tehdit", "Risk", "VarlikKategorisi", "TehditKategorisi", "Surec", "IsAkisi", "Personel", "Birim"],
-    "lastLiquibaseTimestamp": 1636545948000
+    "lastLiquibaseTimestamp": 1636545948000,
+    "herokuAppName": "bgys-app",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "11"
   }
 }
