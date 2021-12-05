@@ -3,7 +3,7 @@
     "birim": {
       "home": {
         "title": "Birimler",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Yenile",
         "createLabel": " Birim Ekle",
         "createOrEditLabel": "Create or edit a Birim",
         "notFound": "No Birims found"

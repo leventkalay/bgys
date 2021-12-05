@@ -159,6 +159,22 @@ public class RiskResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/risks/findByOnayDurumu")
+    public ResponseEntity<List<Risk>> findByOnayDurumu(
+        Pageable pageable,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
+        log.debug("REST request to get a page of Risks");
+        Page<Risk> page;
+        if (eagerload) {
+            page = riskService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = riskService.findByOnayDurumu(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code GET  /risks/:id} : get the "id" risk.
      *

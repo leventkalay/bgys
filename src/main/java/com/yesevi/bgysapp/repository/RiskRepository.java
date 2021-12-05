@@ -1,6 +1,7 @@
 package com.yesevi.bgysapp.repository;
 
 import com.yesevi.bgysapp.domain.Risk;
+import com.yesevi.bgysapp.domain.enumeration.Onay;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -25,4 +26,6 @@ public interface RiskRepository extends JpaRepository<Risk, Long> {
 
     @Query("select risk from Risk risk left join fetch risk.varliks where risk.id =:id")
     Optional<Risk> findOneWithEagerRelationships(@Param("id") Long id);
+
+    Page<Risk> findByOnayDurumu(Onay onayDurumu, Pageable pageable);
 }

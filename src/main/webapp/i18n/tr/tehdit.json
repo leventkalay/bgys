@@ -4,7 +4,7 @@
       "home": {
         "title": "Tehditler",
         "refreshListLabel": "Listeyi Yenile",
-        "createLabel": "Create a new Tehdit",
+        "createLabel": "Tehdit Ekle",
         "createOrEditLabel": "Create or edit a Tehdit",
         "notFound": "No Tehdits found"
       },

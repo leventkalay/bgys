@@ -5,9 +5,10 @@ import { RiskDetailComponent } from './detail/risk-detail.component';
 import { RiskUpdateComponent } from './update/risk-update.component';
 import { RiskDeleteDialogComponent } from './delete/risk-delete-dialog.component';
 import { RiskRoutingModule } from './route/risk-routing.module';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
-  imports: [SharedModule, RiskRoutingModule],
+  imports: [SharedModule, RiskRoutingModule, SelectButtonModule],
   declarations: [RiskComponent, RiskDetailComponent, RiskUpdateComponent, RiskDeleteDialogComponent],
   entryComponents: [RiskDeleteDialogComponent],
 })

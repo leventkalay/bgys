@@ -9,6 +9,7 @@ import { IRisk } from '../risk.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { RiskService } from '../service/risk.service';
 import { RiskDeleteDialogComponent } from '../delete/risk-delete-dialog.component';
+import { Onay } from '../../enumerations/onay.model';
 
 @Component({
   selector: 'jhi-risk',
@@ -16,6 +17,7 @@ import { RiskDeleteDialogComponent } from '../delete/risk-delete-dialog.componen
 })
 export class RiskComponent implements OnInit {
   risks?: IRisk[];
+  risks2?: IRisk[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -23,13 +25,20 @@ export class RiskComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  value1 = 'off';
+  stateOptions: any = [];
 
   constructor(
     protected riskService: RiskService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
-  ) {}
+  ) {
+    this.stateOptions = [
+      { label: 'Onay Bekleyenler', value: 'off' },
+      { label: 'Onaylananlar', value: 'on' },
+    ];
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -51,8 +60,31 @@ export class RiskComponent implements OnInit {
           this.onError();
         }
       );
+    this.riskService
+      .query2({
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<IRisk[]>) => {
+          this.isLoading = false;
+          this.onSuccess2(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
   }
-
+  save(risk: IRisk): void {
+    risk.onayDurumu = Onay.ONAYLANDI;
+    if (risk.id !== undefined) {
+      this.riskService.update(risk).subscribe(data => {
+        this.loadPage();
+      });
+    }
+  }
   ngOnInit(): void {
     this.handleNavigation();
   }
@@ -108,6 +140,21 @@ export class RiskComponent implements OnInit {
       });
     }
     this.risks = data ?? [];
+    this.ngbPaginationPage = this.page;
+  }
+  protected onSuccess2(data: IRisk[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.page = page;
+    if (navigate) {
+      this.router.navigate(['/risk'], {
+        queryParams: {
+          page: this.page,
+          size: this.itemsPerPage,
+          sort: this.predicate + ',' + (this.ascending ? ASC : DESC),
+        },
+      });
+    }
+    this.risks2 = data ?? [];
     this.ngbPaginationPage = this.page;
   }
 

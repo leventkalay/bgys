@@ -4,7 +4,7 @@
       "home": {
         "title": "Riskler",
         "refreshListLabel": "Listeyi Yenile",
-        "createLabel": "Create a new Risk",
+        "createLabel": "Risk Ekle",
         "createOrEditLabel": "Create or edit a Risk",
         "notFound": "No Risks found"
       },

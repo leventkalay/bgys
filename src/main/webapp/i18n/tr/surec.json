@@ -2,9 +2,9 @@
   "bgysApp": {
     "surec": {
       "home": {
-        "title": "Surecler",
+        "title": "Süreçler",
         "refreshListLabel": "Listeyi Yenile",
-        "createLabel": "Create a new Surec",
+        "createLabel": "Süreç Ekle",
         "createOrEditLabel": "Create or edit a Surec",
         "notFound": "No Surecs found"
       },

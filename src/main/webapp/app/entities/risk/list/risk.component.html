@@ -1,6 +1,7 @@
 <div>
   <h2 id="page-heading" data-cy="RiskHeading">
     <span jhiTranslate="bgysApp.risk.home.title">Risks</span>
+    <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value"></p-selectButton>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
@@ -28,7 +29,58 @@
     <span jhiTranslate="bgysApp.risk.home.notFound">No risks found</span>
   </div>
 
-  <div class="table-responsive" id="entities" *ngIf="risks && risks.length > 0">
+  <div class="table-responsive" id="entities" *ngIf="risks && risks.length > 0 && value1 === 'off'">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adi"><span jhiTranslate="bgysApp.risk.adi">Adi</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="aciklama">
+            <span jhiTranslate="bgysApp.risk.aciklama">Aciklama</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="onayDurumu">
+            <span jhiTranslate="bgysApp.risk.onayDurumu">Onay Durumu</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let risk of risks2; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/risk', risk.id, 'view']">{{ risk.id }}</a>
+          </td>
+          <td>{{ risk.adi }}</td>
+          <td>{{ risk.aciklama }}</td>
+          <td jhiTranslate="{{ 'bgysApp.Onay.' + risk.onayDurumu }}">{{ risk.onayDurumu }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/risk', risk.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/risk', risk.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                (click)="save(risk)"
+                class="btn btn-success btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="check"></fa-icon>
+                <span class="d-none d-md-inline">Onayla</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-responsive" id="entities2" *ngIf="risks && risks.length > 0 && value1 === 'on'">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
@@ -58,12 +110,24 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['/risk', risk.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <button
+                type="submit"
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                [routerLink]="['/risk', risk.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
-              <button type="submit" (click)="delete(risk)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                type="submit"
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                (click)="delete(risk)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
@@ -73,7 +137,6 @@
       </tbody>
     </table>
   </div>
-
   <div *ngIf="risks && risks.length > 0">
     <div class="row justify-content-center">
       <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>

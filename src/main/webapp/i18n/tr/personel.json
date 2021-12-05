@@ -3,8 +3,8 @@
     "personel": {
       "home": {
         "title": "Personeller",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Personel",
+        "refreshListLabel": "Yenile",
+        "createLabel": "Kişi Ekle",
         "createOrEditLabel": "Create or edit a Personel",
         "notFound": "No Personels found"
       },

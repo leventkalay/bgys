@@ -1,6 +1,7 @@
 package com.yesevi.bgysapp.service.impl;
 
 import com.yesevi.bgysapp.domain.Varlik;
+import com.yesevi.bgysapp.domain.enumeration.Onay;
 import com.yesevi.bgysapp.repository.VarlikRepository;
 import com.yesevi.bgysapp.service.VarlikService;
 import java.util.Optional;
@@ -79,7 +80,14 @@ public class VarlikServiceImpl implements VarlikService {
     @Transactional(readOnly = true)
     public Page<Varlik> findAll(Pageable pageable) {
         log.debug("Request to get all Varliks");
-        return varlikRepository.findAll(pageable);
+        return varlikRepository.findByOnayDurumu(Onay.ONAYLANDI, pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Varlik> findByOnayDurumu(Pageable pageable) {
+        log.debug("Request to get all Varliks");
+        return varlikRepository.findByOnayDurumu(Onay.ONAY_BEKLENMEDE, pageable);
     }
 
     @Override

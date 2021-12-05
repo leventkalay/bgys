@@ -1,6 +1,7 @@
 package com.yesevi.bgysapp.service.impl;
 
 import com.yesevi.bgysapp.domain.Risk;
+import com.yesevi.bgysapp.domain.enumeration.Onay;
 import com.yesevi.bgysapp.repository.RiskRepository;
 import com.yesevi.bgysapp.service.RiskService;
 import java.util.Optional;
@@ -58,7 +59,14 @@ public class RiskServiceImpl implements RiskService {
     @Transactional(readOnly = true)
     public Page<Risk> findAll(Pageable pageable) {
         log.debug("Request to get all Risks");
-        return riskRepository.findAll(pageable);
+        return riskRepository.findByOnayDurumu(Onay.ONAYLANDI, pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Risk> findByOnayDurumu(Pageable pageable) {
+        log.debug("Request to get all Risks");
+        return riskRepository.findByOnayDurumu(Onay.ONAY_BEKLENMEDE, pageable);
     }
 
     public Page<Risk> findAllWithEagerRelationships(Pageable pageable) {

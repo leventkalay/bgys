@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IVarlik } from '../varlik.model';
@@ -10,6 +10,7 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { VarlikService } from '../service/varlik.service';
 import { VarlikDeleteDialogComponent } from '../delete/varlik-delete-dialog.component';
 import { DataUtils } from 'app/core/util/data-util.service';
+import { Onay } from '../../enumerations/onay.model';
 
 @Component({
   selector: 'jhi-varlik',
@@ -17,6 +18,7 @@ import { DataUtils } from 'app/core/util/data-util.service';
 })
 export class VarlikComponent implements OnInit {
   varliks?: IVarlik[];
+  varliks2?: IVarlik[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -24,6 +26,8 @@ export class VarlikComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  value1 = 'off';
+  stateOptions: any = [];
 
   constructor(
     protected varlikService: VarlikService,
@@ -31,7 +35,12 @@ export class VarlikComponent implements OnInit {
     protected dataUtils: DataUtils,
     protected router: Router,
     protected modalService: NgbModal
-  ) {}
+  ) {
+    this.stateOptions = [
+      { label: 'Onay Bekleyenler', value: 'off' },
+      { label: 'Onaylananlar', value: 'on' },
+    ];
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -47,6 +56,23 @@ export class VarlikComponent implements OnInit {
         (res: HttpResponse<IVarlik[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        () => {
+          this.isLoading = false;
+          this.onError();
+        }
+      );
+
+    this.varlikService
+      .query2({
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<IVarlik[]>) => {
+          this.isLoading = false;
+          this.onSuccess2(res.body, res.headers, pageToLoad, !dontNavigate);
         },
         () => {
           this.isLoading = false;
@@ -80,6 +106,16 @@ export class VarlikComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+  save(varlik: IVarlik): void {
+    if (varlik.id !== undefined) {
+      varlik.onayDurumu = Onay.ONAYLANDI;
+      this.varlikService.update(varlik).subscribe(data => {
+        this.loadPage();
+      });
+    } else {
+      this.varlikService.create(varlik);
+    }
   }
 
   protected sort(): string[] {
@@ -120,7 +156,21 @@ export class VarlikComponent implements OnInit {
     this.varliks = data ?? [];
     this.ngbPaginationPage = this.page;
   }
-
+  protected onSuccess2(data: IVarlik[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.page = page;
+    if (navigate) {
+      this.router.navigate(['/varlik'], {
+        queryParams: {
+          page: this.page,
+          size: this.itemsPerPage,
+          sort: this.predicate + ',' + (this.ascending ? ASC : DESC),
+        },
+      });
+    }
+    this.varliks2 = data ?? [];
+    this.ngbPaginationPage = this.page;
+  }
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
   }

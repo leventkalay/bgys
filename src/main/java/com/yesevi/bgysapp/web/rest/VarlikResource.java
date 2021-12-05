@@ -152,6 +152,14 @@ public class VarlikResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/varliks/findByOnayDurumu")
+    public ResponseEntity<List<Varlik>> findByOnayDurumu(Pageable pageable) {
+        log.debug("REST request to get a page of Varliks");
+        Page<Varlik> page = varlikService.findByOnayDurumu(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code GET  /varliks/:id} : get the "id" varlik.
      *

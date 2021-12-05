@@ -4,6 +4,7 @@ import com.yesevi.bgysapp.domain.Risk;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Interface for managing {@link Risk}.
@@ -32,6 +33,8 @@ public interface RiskService {
      * @return the list of entities.
      */
     Page<Risk> findAll(Pageable pageable);
+
+    Page<Risk> findByOnayDurumu(Pageable pageable);
 
     /**
      * Get all the risks with eager load of many-to-many relationships.
